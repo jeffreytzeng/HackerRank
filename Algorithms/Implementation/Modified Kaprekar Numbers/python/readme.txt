@@ -1,0 +1,1 @@
+Using class in module and string/integer convert to solve problem.
