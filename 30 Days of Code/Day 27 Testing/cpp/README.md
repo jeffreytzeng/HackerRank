@@ -51,23 +51,23 @@
 			-- Generating done
 			-- Build files have been written to: D:/googletest/build
 
-	6) Fixing some errors in googletest\CMakeLists.txt
-		Adding two settings and comment out one line as following:
+	6) Fixing some errors in googletest\CMakeLists.txt<br />
+        Adding two settings and comment out one line as following:
 
-		if (CMAKE_VERSION VERSION_LESS "3.1")
-		  add_definitions(-std=c++11)
-		else()
-			// Using gnu++11 instead c++11 for more looser rule[2]
-		  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
-			// Ignore "'int gettimeofday(timeval*, void*)' is deprecated" warning[3]
-		  set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations")
-			// Comment out following line
-		// #  set(CMAKE_CXX_STANDARD 11)
-		  set(CMAKE_CXX_STANDARD_REQUIRED ON)
-		  if(NOT CYGWIN AND NOT MSYS)
-			set(CMAKE_CXX_EXTENSIONS OFF)
-		  endif()
-		endif()
+        if (CMAKE_VERSION VERSION_LESS "3.1")<br />
+          add_definitions(-std=c++11)<br />
+        else()<br />
+          // Using gnu++11 instead c++11 for more looser rule[2]<br />
+          set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")<br />
+          // Ignore "'int gettimeofday(timeval*, void*)' is deprecated" warning[3]<br />
+          set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations")<br />
+          // Comment out following line<br />
+        // #  set(CMAKE_CXX_STANDARD 11)<br />
+          set(CMAKE_CXX_STANDARD_REQUIRED ON)<br />
+          if(NOT CYGWIN AND NOT MSYS)<br />
+            set(CMAKE_CXX_EXTENSIONS OFF)<br />
+          endif()<br />
+        endif()<br />
 
 	7) mingw32-make<br />
 		this should appear:
