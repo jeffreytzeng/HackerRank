@@ -1,12 +1,12 @@
-1. Download and install cmake from https://cmake.org/
+1. Download and install cmake from https://cmake.org/<br />
 	I'm downloaded cmake-3.16.2-win64-x64.exe
 
-2. Installing pthread package from mingw installer
+2. Installing pthread package from mingw installer<br />
 	My gcc/g++ version is 8.2.0
 
 3. Setting mingw environment variable in windows path by move target mingw upward to first of all mingw versions.
 
-4. Download gtest from github:
+4. Download gtest from github:<br />
 	git clone https://github.com/google/googletest
 
 5. Using cmake to build gtest:
@@ -44,7 +44,7 @@
 			See also "D:/googletest/build/CMakeFiles/CMakeOutput.log".
 
 		ignore error since no CMakeDetermineCompilerABI_C.bin file.
-	5) cmake ..
+	5) cmake ..<br />
 		this should appear:
 
 			-- Configuring done
@@ -69,7 +69,7 @@
 		  endif()
 		endif()
 
-	7) mingw32-make
+	7) mingw32-make<br />
 		this should appear:
 
 			-- Configuring done
@@ -91,21 +91,21 @@
 			[100%] Linking CXX static library ..\lib\libgtest_main.a
 			[100%] Built target gtest_main
 
-6. Writing test code and code which wanted be tested:
-	like files in folders test/src and src
+6. Writing test code and source code which wanted to be tested:<br />
+	Files in folders test/src/ and src/
 
-7. Copying lib folder build from cmake and gtest src folder to test code folder
+7. Copying lib folder build from cmake and gtest src folder to test code folder.
 
 8. Going to test code folder and enter following compile command:<br />
-	my_sample:
+	a. my_sample:
 
 		g++ -I../../../googletest/include -I../../src -I../../../googletest/src -L../../../lib -std=gnu++11 ../../src/add.cpp test.cpp main_test.cpp -lgtest -lpthread
 
-	hacker_problem:
+	b. hacker_problem:
 
 		g++ -std=gnu++11 -L../../lib -I../../googletest/include -I../../googletest/src -o test main_test.cpp ../src/minimum.hpp test_gtest.cpp -lgtest -lpthread
 
-9. Executing a.exe executable file in my_sample:
+9. Executing a.exe executable file in my_sample:<br />
 	this should appear:
 
 		[==========] Running 1 test from 1 test suite.
@@ -120,10 +120,11 @@
 		[  PASSED  ] 1 test.
 
 10. Using Makefile:
-	1) my_sample:
-		a. "@" means not echo command when executes.<br />
-		b. Make only executes first tag and it's associate tags.<br />
-		c. Linking flags must go last in the command as following.<br />
+	a. "@" means not echo command when executes.<br />
+	b. Make only executes first tag and it's associate tags.<br />
+	c. Linking flags must go last in the command as following.<br />
+
+	1) my_sample:<br />
 
 			CXX = g++
 			CXXFLAG = -L../../../lib -lgtest -lpthread -std=gnu++11
