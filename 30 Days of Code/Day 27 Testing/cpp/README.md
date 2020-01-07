@@ -56,9 +56,9 @@
 		if (CMAKE_VERSION VERSION_LESS "3.1")
 		  add_definitions(-std=c++11)
 		else()
-		  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")	<!-- Using gnu++11 instead c++11 for more looser rule					-->[2]
-		  set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations")		<!-- Ignore "'int gettimeofday(timeval*, void*)' is deprecated" warning	-->[3]
-		<!-- #  set(CMAKE_CXX_STANDARD 11) -->						<!-- Comment out this line -->
+		  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")	[//]: <> Using gnu++11 instead c++11 for more looser rule					[2]
+		  set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations")		[//]: <> Ignore "'int gettimeofday(timeval*, void*)' is deprecated" warning	[3]
+		[//]: <> #  set(CMAKE_CXX_STANDARD 11)						[//]: <> Comment out this line
 		  set(CMAKE_CXX_STANDARD_REQUIRED ON)
 		  if(NOT CYGWIN AND NOT MSYS)
 			set(CMAKE_CXX_EXTENSIONS OFF)
@@ -117,11 +117,10 @@
 
 10. Using Makefile:
 	1) my_sample:
-		I. "@" means not echo command when executes.
-		II. Make only executes first tag and it's associate tags.
-		III. Linking flags must go last in the command as following.
+		a. "@" means not echo command when executes.
+		b. Make only executes first tag and it's associate tags.
+		c. Linking flags must go last in the command as following.
 
-		========================Makefile========================
 			CXX = g++
 			CXXFLAG = -L../../../lib -lgtest -lpthread -std=gnu++11
 			INCLUDE = -I./ -I../../src -I../../../googletest/include -I../../../googletest/src
@@ -135,11 +134,9 @@
 
 			test:
 				@$(CXX) $(INCLUDE) $(CPP) $(CXXFLAG) -o run
-		========================end========================
 
 	2) HackerRank problem:
 
-		========================Makefile========================
 			clean: run
 				@del test.exe
 
@@ -148,7 +145,6 @@
 
 			compile:
 				@g++ -std=gnu++11 -L../../lib -I../../googletest/include -I../../googletest/src -o test main_test.cpp ../src/minimum.hpp test_gtest.cpp -lgtest -lpthread
-		========================end========================
 
 [1]: https://stackoverflow.com/questions/59355908/mingw-c-compiler-not-able-to-compile-a-simple-test-program
 [2]: https://stackoverflow.com/questions/10851247/how-do-i-activate-c-11-in-cmake
