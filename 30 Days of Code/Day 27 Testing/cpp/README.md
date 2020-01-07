@@ -15,6 +15,7 @@
 	3) cd build
 	4) cmake -G "MinGW Makefiles" -DLIB_MAN=OFF -DCMAKE_INSTALL_PREFIX=C:\MinGW\bin -B. ..		[1]
 		this should appear:
+
 			-- The C compiler identification is GNU 8.2.0
 			-- The CXX compiler identification is GNU 8.2.0
 			-- Check for working C compiler: C:/MinGW/bin/gcc.exe
@@ -41,26 +42,32 @@
 			-- Found PythonInterp: C:/Users/2013g/AppData/Local/Programs/Python/Python38-32/python.exe (found version "3.8")
 			-- Configuring incomplete, errors occurred!
 			See also "D:/googletest/build/CMakeFiles/CMakeOutput.log".
-		ignore error
+
+		ignore error since no CMakeDetermineCompilerABI_C.bin file.
 	5) cmake ..
 		this should appear:
+
 			-- Configuring done
 			-- Generating done
 			-- Build files have been written to: D:/googletest/build
+
 	6) Fixing some errors in googletest\CMakeLists.txt:
+
 		if (CMAKE_VERSION VERSION_LESS "3.1")
 		  add_definitions(-std=c++11)
 		else()
-		  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")	<--- using gnu++11 instead c++11 for more looser rule						[2]
-		  set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations")		<--- ignore "'int gettimeofday(timeval*, void*)' is deprecated" warning		[3]
-		#  set(CMAKE_CXX_STANDARD 11)
+		  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")	<!-- Using gnu++11 instead c++11 for more looser rule					-->[2]
+		  set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations")		<!-- Ignore "'int gettimeofday(timeval*, void*)' is deprecated" warning	-->[3]
+		<!-- #  set(CMAKE_CXX_STANDARD 11) -->						<!-- Comment out this line -->
 		  set(CMAKE_CXX_STANDARD_REQUIRED ON)
 		  if(NOT CYGWIN AND NOT MSYS)
 			set(CMAKE_CXX_EXTENSIONS OFF)
 		  endif()
 		endif()
+
 	7) mingw32-make
 		this should appear:
+
 			-- Configuring done
 			-- Generating done
 			-- Build files have been written to: D:/googletest/build
@@ -87,11 +94,16 @@
 
 8. Going to test code folder and enter following compile command:
 	1) my_sample:
+
 		g++ -I../../../googletest/include -I../../src -I../../../googletest/src -L../../../lib -std=gnu++11 ../../src/add.cpp test.cpp main_test.cpp -lgtest -lpthread
+
 	2) hacker_problem:
+
 		g++ -std=gnu++11 -L../../lib -I../../googletest/include -I../../googletest/src -o test main_test.cpp ../src/minimum.hpp test_gtest.cpp -lgtest -lpthread
+
 9. Executing a.exe executable file in my_sample:
 	this should appear:
+
 		[==========] Running 1 test from 1 test suite.
 		[----------] Global test environment set-up.
 		[----------] 1 test from AdditionTest
@@ -108,24 +120,35 @@
 		I. "@" means not echo command when executes.
 		II. Make only executes first tag and it's associate tags.
 		III. Linking flags must go last in the command as following.
+
 		========================Makefile========================
-		CXX = g++
-		CXXFLAG = -L../../../lib -lgtest -lpthread -std=gnu++11
-		INCLUDE = -I./ -I../../src -I../../../googletest/include -I../../../googletest/src
-		CPP = ../../src/add.cpp test.cpp main_test.cpp
+			CXX = g++
+			CXXFLAG = -L../../../lib -lgtest -lpthread -std=gnu++11
+			INCLUDE = -I./ -I../../src -I../../../googletest/include -I../../../googletest/src
+			CPP = ../../src/add.cpp test.cpp main_test.cpp
 
-		clean: run
-			@del run.exe
+			clean: run
+				@del run.exe
 
-		run: test
-			@./run
+			run: test
+				@./run
 
-		test:
-			@$(CXX) $(INCLUDE) $(CPP) $(CXXFLAG) -o run
+			test:
+				@$(CXX) $(INCLUDE) $(CPP) $(CXXFLAG) -o run
 		========================end========================
-	2) HackerRank problem:
-		
 
+	2) HackerRank problem:
+
+		========================Makefile========================
+			clean: run
+				@del test.exe
+
+			run: compile
+				@./test
+
+			compile:
+				@g++ -std=gnu++11 -L../../lib -I../../googletest/include -I../../googletest/src -o test main_test.cpp ../src/minimum.hpp test_gtest.cpp -lgtest -lpthread
+		========================end========================
 
 [1]: https://stackoverflow.com/questions/59355908/mingw-c-compiler-not-able-to-compile-a-simple-test-program
 [2]: https://stackoverflow.com/questions/10851247/how-do-i-activate-c-11-in-cmake
