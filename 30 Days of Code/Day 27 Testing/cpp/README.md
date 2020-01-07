@@ -13,7 +13,7 @@
 	1) cd googletest
 	2) mkdir build
 	3) cd build
-	4) cmake -G "MinGW Makefiles" -DLIB_MAN=OFF -DCMAKE_INSTALL_PREFIX=C:\MinGW\bin -B. ..		[1]
+	4) cmake -G "MinGW Makefiles" -DLIB_MAN=OFF -DCMAKE_INSTALL_PREFIX=C:\MinGW\bin -B. ..		[1]<br />
 		this should appear:
 
 			-- The C compiler identification is GNU 8.2.0
@@ -56,9 +56,9 @@
 		if (CMAKE_VERSION VERSION_LESS "3.1")
 		  add_definitions(-std=c++11)
 		else()
-		  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")	[//]: <> Using gnu++11 instead c++11 for more looser rule					[2]
-		  set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations")		[//]: <> Ignore "'int gettimeofday(timeval*, void*)' is deprecated" warning	[3]
-		[//]: <> #  set(CMAKE_CXX_STANDARD 11)						[//]: <> Comment out this line
+		  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")	[//]: # Using gnu++11 instead c++11 for more looser rule					[2]<br />
+		  set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations")		[//]: # Ignore "'int gettimeofday(timeval*, void*)' is deprecated" warning	[3]<br />
+		[//]: # #  set(CMAKE_CXX_STANDARD 11)						[//]: # Comment out this line
 		  set(CMAKE_CXX_STANDARD_REQUIRED ON)
 		  if(NOT CYGWIN AND NOT MSYS)
 			set(CMAKE_CXX_EXTENSIONS OFF)
