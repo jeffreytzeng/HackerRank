@@ -53,17 +53,17 @@
 
 	6) Fixing some errors in googletest\CMakeLists.txt:
 
-		if (CMAKE_VERSION VERSION_LESS "3.1")
-		  add_definitions(-std=c++11)
-		else()
-		  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")	[//]: # Using gnu++11 instead c++11 for more looser rule					[2]<br />
-		  set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations")		[//]: # Ignore "'int gettimeofday(timeval*, void*)' is deprecated" warning	[3]<br />
-		[//]: # #  set(CMAKE_CXX_STANDARD 11)						[//]: # Comment out this line
-		  set(CMAKE_CXX_STANDARD_REQUIRED ON)
-		  if(NOT CYGWIN AND NOT MSYS)
-			set(CMAKE_CXX_EXTENSIONS OFF)
-		  endif()
-		endif()
+		if (CMAKE_VERSION VERSION_LESS "3.1")<br />
+		  add_definitions(-std=c++11)<br />
+		else()<br />
+		  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")	// Using gnu++11 instead c++11 for more looser rule					[2]<br />
+		  set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations")		// Ignore "'int gettimeofday(timeval*, void*)' is deprecated" warning	[3]<br />
+		// #  set(CMAKE_CXX_STANDARD 11)							// Comment out this line<br />
+		  set(CMAKE_CXX_STANDARD_REQUIRED ON)<br />
+		  if(NOT CYGWIN AND NOT MSYS)<br />
+			set(CMAKE_CXX_EXTENSIONS OFF)<br />
+		  endif()<br />
+		endif()<br />
 
 	7) mingw32-make
 		this should appear:
@@ -93,11 +93,11 @@
 7. Copying lib folder build from cmake and gtest src folder to test code folder
 
 8. Going to test code folder and enter following compile command:
-	1) my_sample:
+	my_sample:
 
 		g++ -I../../../googletest/include -I../../src -I../../../googletest/src -L../../../lib -std=gnu++11 ../../src/add.cpp test.cpp main_test.cpp -lgtest -lpthread
 
-	2) hacker_problem:
+	hacker_problem:
 
 		g++ -std=gnu++11 -L../../lib -I../../googletest/include -I../../googletest/src -o test main_test.cpp ../src/minimum.hpp test_gtest.cpp -lgtest -lpthread
 
@@ -117,9 +117,9 @@
 
 10. Using Makefile:
 	1) my_sample:
-		a. "@" means not echo command when executes.
-		b. Make only executes first tag and it's associate tags.
-		c. Linking flags must go last in the command as following.
+		a. "@" means not echo command when executes.<br />
+		b. Make only executes first tag and it's associate tags.<br />
+		c. Linking flags must go last in the command as following.<br />
 
 			CXX = g++
 			CXXFLAG = -L../../../lib -lgtest -lpthread -std=gnu++11
