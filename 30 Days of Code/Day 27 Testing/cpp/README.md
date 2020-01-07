@@ -13,7 +13,7 @@
 	1) cd googletest
 	2) mkdir build
 	3) cd build
-	4) cmake -G "MinGW Makefiles" -DLIB_MAN=OFF -DCMAKE_INSTALL_PREFIX=C:\MinGW\bin -B. ..		[1]<br />
+	4) cmake -G "MinGW Makefiles" -DLIB_MAN=OFF -DCMAKE_INSTALL_PREFIX=C:\MinGW\bin -B. ..[1]<br />
 		this should appear:
 
 			-- The C compiler identification is GNU 8.2.0
@@ -51,19 +51,23 @@
 			-- Generating done
 			-- Build files have been written to: D:/googletest/build
 
-	6) Fixing some errors in googletest\CMakeLists.txt:
+	6) Fixing some errors in googletest\CMakeLists.txt
+		Adding two settings and comment out one line as following:
 
-		if (CMAKE_VERSION VERSION_LESS "3.1")<br />
-		  add_definitions(-std=c++11)<br />
-		else()<br />
-		  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")	// Using gnu++11 instead c++11 for more looser rule					[2]<br />
-		  set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations")		// Ignore "'int gettimeofday(timeval*, void*)' is deprecated" warning	[3]<br />
-		// #  set(CMAKE_CXX_STANDARD 11)							// Comment out this line<br />
-		  set(CMAKE_CXX_STANDARD_REQUIRED ON)<br />
-		  if(NOT CYGWIN AND NOT MSYS)<br />
-			set(CMAKE_CXX_EXTENSIONS OFF)<br />
-		  endif()<br />
-		endif()<br />
+		if (CMAKE_VERSION VERSION_LESS "3.1")
+		  add_definitions(-std=c++11)
+		else()
+			// Using gnu++11 instead c++11 for more looser rule[2]
+		  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
+			// Ignore "'int gettimeofday(timeval*, void*)' is deprecated" warning[3]
+		  set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations")
+			// Comment out following line
+		// #  set(CMAKE_CXX_STANDARD 11)
+		  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+		  if(NOT CYGWIN AND NOT MSYS)
+			set(CMAKE_CXX_EXTENSIONS OFF)
+		  endif()
+		endif()
 
 	7) mingw32-make
 		this should appear:
@@ -92,7 +96,7 @@
 
 7. Copying lib folder build from cmake and gtest src folder to test code folder
 
-8. Going to test code folder and enter following compile command:
+8. Going to test code folder and enter following compile command:<br />
 	my_sample:
 
 		g++ -I../../../googletest/include -I../../src -I../../../googletest/src -L../../../lib -std=gnu++11 ../../src/add.cpp test.cpp main_test.cpp -lgtest -lpthread
