@@ -20,13 +20,5 @@ process.stdin.on("end", _ => {
 });
 
 function Pages(n, p) {
-	var turns = 0;
-
-	if (p > n / 2) {
-		turns = n % 2 ? Math.floor((n - p) / 2) : Math.floor(n / 2) - Math.floor(p / 2);
-	} else {
-		turns = Math.floor(p / 2);
-	}
-
-	console.log(turns);
+	process.stdout.write(p > n / 2 ? Math.floor(n / 2) - Math.floor(p / 2) : Math.floor(p / 2);
 }
