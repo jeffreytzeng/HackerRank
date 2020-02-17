@@ -15,18 +15,19 @@ Constraints
 	s[i] is either "U" or "D"
 
 ex1:
-	input:				which is:         /\
-		8							_    /  \_
-		DDUUUUDD					 \  /
-									  \/
+
+	input:				which is:           /\
+		8                                     _    /  \_
+		DDUUUUDD                               \  /
+		                                        \/
 	output:
 		1
 
 ex:
 
 	input:				which is:
-		8							_/\      _
-		UDDDUDUU					   \    /
-										\/\/
+		8                                     _/\      _
+		UDDDUDUU                                 \    /
+		                                          \/\/
 	output:
 		1
