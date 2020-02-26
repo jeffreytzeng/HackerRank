@@ -32,3 +32,7 @@ ex2:
 
 	output:
 		3
+
+Link: https://www.hackerrank.com/challenges/sock-merchant/problem<br />
+Point: 10<br />
+Level: easy
