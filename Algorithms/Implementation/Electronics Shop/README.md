@@ -36,5 +36,5 @@ ex2:
 		-1
 
 Link: https://www.hackerrank.com/challenges/electronics-shop/problem<br />
-Point: 10<br />
+Point: 15<br />
 Level: easy
