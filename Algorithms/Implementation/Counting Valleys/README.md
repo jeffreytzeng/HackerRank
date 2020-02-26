@@ -37,3 +37,7 @@ ex:
                                                   \/\/
     output:
         1
+
+Link: https://www.hackerrank.com/challenges/counting-valleys/problem<br />
+Point: 15<br />
+Level: easy
