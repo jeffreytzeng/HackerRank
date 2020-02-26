@@ -31,3 +31,7 @@ ex2:
 
 	output:
 		0
+
+Link: https://www.hackerrank.com/challenges/drawing-book/problem<br />
+Point: 10<br />
+Level: easy
