@@ -37,3 +37,7 @@ ex2:
 
 	output:
 		Bon Appetit
+
+Link: https://www.hackerrank.com/challenges/bon-appetit/problem<br />
+Point: 10<br />
+Level: easy
