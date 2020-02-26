@@ -12,6 +12,7 @@ Output Format:
 Constraints:
 
 	5 <= n <= 2 x 10^5
+	1 <= n[i] <= 5
 
 ex1:
 
