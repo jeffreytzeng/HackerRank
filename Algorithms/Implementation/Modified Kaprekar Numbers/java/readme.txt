@@ -1,1 +1,0 @@
-Using divide and modulus to calculate the problem.
